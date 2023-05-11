@@ -11,7 +11,8 @@ export const guestList = () => {
 for (const guest of guests) {
 
     html += `<li  data-type="product" data-name="${guest.name}" >
-        ${guest.name}</li>`
+        ${guest.name}
+        </li>`
 }
 
 html += "</ul>"
