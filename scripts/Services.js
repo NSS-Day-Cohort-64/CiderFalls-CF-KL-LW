@@ -1,25 +1,8 @@
-import { getGuests, getParkAreas, getParkServices, getServices } from "./database.js";
+import { getParkAreas, getParkServices, getServices } from "./database.js";
 
-const guestsList = getGuests()
 const areasList = getParkAreas()
 const servicesList = getServices()
 const parkServicesList = getParkServices()
-
-// //Function: responsibility is to find the service for a parkService
-// const findServices = (parkServiceObject, serviceArray) => {
-//     //set an empty variable
-//     let placeService = null
-
-//     //for...of loop iterating through serviceArray
-//     for (const service of serviceArray) {
-//         //if service iteration.id === areaServiceObject.serviceId
-//         if (service.id === parkServiceObject.serviceId) {
-//             placeService = service
-//         }
-//     }
-//     //return a service object
-//     return placeService
-// }
 
 //Function: responsibility is to find the area for a parkService
 const findAreas = (parkServiceObject, areaArray) => {
