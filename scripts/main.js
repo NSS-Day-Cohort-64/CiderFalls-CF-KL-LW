@@ -1,3 +1,5 @@
+import { guestList } from "./Guests.js"
+
 
 const mainContainer = document.querySelector("#container")
 
@@ -18,7 +20,8 @@ const applicationHTML = `
     <h2>GUESTS</h2>
     <section class="detail--column list details__names">
         <h2>Guests</h2>
-        TO DO : !!!! add function
+        ${guestList()}
+        
     </section>
 </article>
 `
