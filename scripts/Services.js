@@ -1,47 +1,70 @@
-//RESPONSIBILITY:    Define event listener to display window message when service item is clicked
-                    //write dynamically created HTML to display a list of services
+import { getParkAreas, getParkServices, getServices } from "./database.js";
 
-
-//!!!!!NOT NEEDED:
-                    //Function: responsibility is to find the service for a parkService
-    //define a getService function with two parameters: parkServiceObject and serviceArray     
-        //set an empty variable
-
-        //for...of loop iterating through serviceArray
-            //if service iteration.id === areaServiceObject.serviceId
-                //variable = service iteration(object)
-
-        //return a service object
-//!!!!!
+const areasList = getParkAreas()
+const servicesList = getServices()
+const parkServicesList = getParkServices()
 
 //Function: responsibility is to find the area for a parkService
-    //define a getArea function with two parameters: parkServiceObject and areaArray     
-        //set an empty variable
+const findAreas = (parkServiceObject, areaArray) => {
+    //set an empty variable
+    let placeArea = null
 
-        //for...of loop iterating through parkAreaArray
-            //if area iteration.id === parkServiceObject.areaId
-                //variable = area iteration(object)
-                    
-        //return a area object
+    //for...of loop iterating through areaArray
+    for (const area of areaArray) {
+        //if area iteration.id === areaServiceObject.areaId
+        if (area.id === parkServiceObject.parkAreaId) {
+            placeArea = area
+        }
+    }
+    //return an area object
+    return placeArea
+}
 
-//Function: responsibility to build message by looping through parkService 
-    //define a getMessage function with serviceId parameter
-    //set empty serviceArray  (use let, so that it ca be modified)
+const findMessage = (serviceId, serviceName) => {
+    let areasArray = [];
 
-    //for ...of loop iterating through parkService array
-        //if parkService iterator serviceId === parameter
-            //define variable equal to getArea function passing iterated parkService and areas array as arguments - this will return an object
-            //push returned object into serviceArray
+    for (const parkService of parkServicesList) {
+        if (parkService.serviceId === serviceId) {
+            const areaMatch = findAreas(parkService, areasList);
+            areasArray.push(areaMatch.name);
+        }
+    }
+    if (areasArray.length === 0) {
+        return 'This service is not provided in any areas';
+    } else {
+        return `${serviceName} is available in ${areasArray.join(' , ')}`;
+    }
+};
 
-    //if 
+document.addEventListener('click', (clickEvent) => {
+    const itemClicked = clickEvent.target;
 
-//Click event
+    if (itemClicked.dataset.type === "service") {
+        const serviceId = parseInt(itemClicked.dataset.id);
 
-    //was a 
+        for (const service of servicesList) {
+            if (service.id === serviceId) {
+                const alert = findMessage(serviceId, service.name);
+                window.alert(alert);
+            }
+        }
+    }
+});
 
 
+export const serviceList = () => {
+    let html = "<ul>"
 
+    for (const service of servicesList) {
 
+        html += `<li  data-type="service"  
+                    data-id="${service.id}" 
+                    data-name="${service.name}" >
+                    ${service.name}
+                </li>`
+    }
 
-//Function: for ... of loop that iterates through services array and lists the service names
-    //This function will return an HTML string
+    html += "</ul>"
+
+    return html
+}

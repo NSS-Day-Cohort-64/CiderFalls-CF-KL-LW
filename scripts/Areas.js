@@ -1,5 +1,22 @@
 //import parkAreas and guests arrays from database
 
+
+// //Function: responsibility is to find the service for a parkService
+// const findServices = (parkServiceObject, serviceArray) => {
+//     //set an empty variable
+//     let placeService = null
+
+//     //for...of loop iterating through serviceArray
+//     for (const service of serviceArray) {
+//         //if service iteration.id === areaServiceObject.serviceId
+//         if (service.id === parkServiceObject.serviceId) {
+//             placeService = service
+//         }
+//     }
+//     //return a service object
+//     return placeService
+// }
+
 //store the return value of the function getParkAreas in variable
 //called areas
 
