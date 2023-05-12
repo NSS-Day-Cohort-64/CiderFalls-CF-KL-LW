@@ -1,5 +1,6 @@
 import { guestList } from "./Guests.js"
 import { serviceList } from "./Services.js"
+import { areasList } from "./Areas.js"
 
 
 
@@ -14,7 +15,7 @@ const applicationHTML = `
     </section>
     <section class="detail--column list details__park areas">
         <h2>Park Areas</h2>
-        TO DO : !!!! add function
+        ${areasList()}
     </section>
 </article>
 
