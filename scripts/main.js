@@ -1,4 +1,6 @@
 import { guestList } from "./Guests.js"
+import { serviceList } from "./Services.js"
+
 
 
 const mainContainer = document.querySelector("#container")
@@ -8,7 +10,7 @@ const applicationHTML = `
 <article class="details">
     <section class="detail--column list details__services">
         <h2>Services</h2>
-        TO DO : !!!! add function
+        ${serviceList()}
     </section>
     <section class="detail--column list details__park areas">
         <h2>Park Areas</h2>
