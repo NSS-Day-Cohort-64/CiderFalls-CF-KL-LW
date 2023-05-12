@@ -29,5 +29,3 @@ const applicationHTML = `
 `
 
 mainContainer.innerHTML = applicationHTML
-
-test
