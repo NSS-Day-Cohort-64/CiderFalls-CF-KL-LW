@@ -3,41 +3,70 @@ import { getGuests, getParkAreas, getParkServices, getServices } from "./databas
 const guestsList = getGuests()
 const areasList = getParkAreas()
 const servicesList = getServices()
-const parkServicesList = getServices()
+const parkServicesList = getParkServices()
 
-//Function: responsibility is to find the service for a parkService
-//define a getService function with two parameters: parkServiceObject and serviceArray
-//set an empty variable
-//for...of loop iterating through serviceArray
-//if service iteration.id === areaServiceObject.serviceId
-//variable = service iteration(object)
-//return a service object
-//!!!!!
+// //Function: responsibility is to find the service for a parkService
+// const findServices = (parkServiceObject, serviceArray) => {
+//     //set an empty variable
+//     let placeService = null
+
+//     //for...of loop iterating through serviceArray
+//     for (const service of serviceArray) {
+//         //if service iteration.id === areaServiceObject.serviceId
+//         if (service.id === parkServiceObject.serviceId) {
+//             placeService = service
+//         }
+//     }
+//     //return a service object
+//     return placeService
+// }
 
 //Function: responsibility is to find the area for a parkService
-//define a getArea function with two parameters: parkServiceObject and areaArray     
-//set an empty variable
+const findAreas = (parkServiceObject, areaArray) => {
+    //set an empty variable
+    let placeArea = null
 
-//for...of loop iterating through parkAreaArray
-//if area iteration.id === parkServiceObject.areaId
-//variable = area iteration(object)
+    //for...of loop iterating through areaArray
+    for (const area of areaArray) {
+        //if area iteration.id === areaServiceObject.areaId
+        if (area.id === parkServiceObject.parkAreaId) {
+            placeArea = area
+        }
+    }
+    //return an area object
+    return placeArea
+}
 
-//return a area object
+const findMessage = (serviceId, serviceName) => {
+    let areasArray = [];
 
-//Function: responsibility to build message by looping through parkService 
-//define a getMessage function with serviceId parameter
-//set empty serviceArray  (use let, so that it ca be modified)
+    for (const parkService of parkServicesList) {
+        if (parkService.serviceId === serviceId) {
+            const areaMatch = findAreas(parkService, areasList);
+            areasArray.push(areaMatch.name);
+        }
+    }
+    if (areasArray.length === 0) {
+        return 'This service is not provided in any areas';
+    } else {
+        return `${serviceName} is available in ${areasArray.join(' , ')}`;
+    }
+};
 
-//for ...of loop iterating through parkService array
-//if parkService iterator serviceId === parameter
-//define variable equal to getArea function passing iterated parkService and areas array as arguments - this will return an object
-//push returned object into serviceArray
+document.addEventListener('click', (clickEvent) => {
+    const itemClicked = clickEvent.target;
 
-//if 
+    if (itemClicked.dataset.type === "service") {
+        const serviceId = parseInt(itemClicked.dataset.id);
 
-//Click event
-
-//was a 
+        for (const service of servicesList) {
+            if (service.id === serviceId) {
+                const alert = findMessage(serviceId, service.name);
+                window.alert(alert);
+            }
+        }
+    }
+});
 
 
 export const serviceList = () => {
@@ -45,9 +74,11 @@ export const serviceList = () => {
 
     for (const service of servicesList) {
 
-        html += `<li  data-type="service" data-name="${service.name}" >
-        ${service.name}
-        </li>`
+        html += `<li  data-type="service"  
+                    data-id="${service.id}" 
+                    data-name="${service.name}" >
+                    ${service.name}
+                </li>`
     }
 
     html += "</ul>"
