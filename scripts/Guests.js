@@ -8,15 +8,15 @@ let guests = getGuests()
 export const guestList = () => {
     let html = "<ul>"
 
-for (const guest of guests) {
+    for (const guest of guests) {
 
-    html += `<li  data-type="product" data-name="${guest.name}" >
+        html += `<li class="guestNames"  data-type="product" data-name="${guest.name}" >
         ${guest.name}
         </li>`
-}
+    }
 
-html += "</ul>"
+    html += "</ul>"
 
-return html
+    return html
 }
 

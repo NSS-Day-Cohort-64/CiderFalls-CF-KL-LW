@@ -1,12 +1,77 @@
-.details {
+* {
+    border: 1px dotted cyan;
+}
+
+.logo {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    font-size: medium;
+
+}
+
+.title {
+    padding-left: 4%;
+}
+
+.mainOverall {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.detailsLeft {
+    display: flex;
+    flex-flow: column;
+    flex-basis: 70%;
+}
+
+.areaBox {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+
+}
+
+.areasBoxMain {
+    border: 2px dotted;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.areaTitle {
+    font-size: medium;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+}
+
+.serviceLists {
+    border: 2px dotted cyan;
+    display: flex;
+    flex-flow: column;
+    flex-basis: 25%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
 }
 
-.detail--column {
-    flex-basis: 24%;
-    margin: 0 2rem;
-    padding: 1rem;
-    border: 1px dotted goldenrod;
+.guestRight {
+    display: flex;
+    flex-flow: column;
+    flex-basis: 30%;
+    align-items: stretch;
+}
+
+.guestList {
+    display: flex;
+    flex-flow: row;
+    align-items: stretch;
+    justify-content: space-between;
 }
