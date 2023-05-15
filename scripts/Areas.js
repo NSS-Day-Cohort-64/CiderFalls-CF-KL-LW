@@ -1,5 +1,8 @@
 //import parkAreas and guests arrays from database
-import { getParkAreas, getGuests } from "./database.js"
+import { getParkAreas, getGuests, getServices, getParkServices } from "./database.js"
+
+
+
 
 //store the return value of the function getParkAreas in variable
 const parkAreas = getParkAreas()
@@ -30,63 +33,72 @@ document.addEventListener("click", (clickEvent) => {
     }
 }
 )
-//start an if statement to check if the id of the parkArea object matches the
-//area id corresponding to each guest
+// const services = getServices()
+// const bridgeTableArray = getParkServices()
 
-//if it matches, set the matched area object equeal to area
-
-//return the whole area object that matched
-
+// const relatedServices = (bridgeTable, service) => {
+//     let servicesArray = [];
 
 
-//add event listener whose purpose is to show the current number 
-//of park guests in each respective area 
-
-//check to see if a parkArea item was clicked
-
-//if a parkArea list item was clicked, windowalert showing the matching
-//
-
-
-
-
-
-//function to return the html. this should ONLY 
-export const areasList = () => {
-    let html = "<ul>"
-
-    for (const area of parkAreas) {
-
-        html += `<li  data-type="area"  
-                    data-id="${area.id}" 
-                    >
-                    ${area.name}
-                </li>`
-    }
-
-    html += "</ul>"
-
-    return html
-}
-
-//display a list of the park areas and should have data attributes
-//for areasId, and type of "areas"
-
-
-
-
-// //Function: responsibility is to find the service for a parkService
-// const findServices = (parkServiceObject, serviceArray) => {
-//     //set an empty variable
-//     let placeService = null
-
-//     //for...of loop iterating through serviceArray
-//     for (const service of serviceArray) {
-//         //if service iteration.id === areaServiceObject.serviceId
-//         if (service.id === parkServiceObject.serviceId) {
-//             placeService = service
+//     for (const bridgeTable of bridgeTableArray) {
+//         if (bridgeTable.serviceId === servicesId) {
+//             const areaMatch = findAreas(parkService, areasList);
+//             areasArray.push(areaMatch.name);
 //         }
 //     }
-//     //return a service object
-//     return placeService
+//     if (areasArray.length === 0) {
+//         return 'This service is not provided in any areas';
+//     } else {
+//         return ` is available in ${areasArray.join(' , ')}`;
+//     }
+// };
+
+
+const parkServices = getParkServices();
+const services = getServices();
+
+
+export const areasList = () => {
+    let areaHtml = `<div class="areaBox">`;
+    //debugger
+    for (const area of parkAreas) {
+        areaHtml += `<div class="serviceLists" data-type="area" data-id="${area.id}" data-name="${area.name}"> </aside> <div class="areaTitle"><br> ${area.name}</div><br>`;
+        for (const areaService of parkServices) {
+            if (area.id === areaService.parkAreaId) {
+                for (const service of services) {
+                    if (areaService.serviceId === service.id) {
+                        areaHtml += `<li>${service.name}</li><br>`;
+                    }
+                }
+            }
+        }
+        areaHtml += `</div>`;
+    }
+    areaHtml += `</div>`;
+    return areaHtml;
+};
+
+
+// export const areasList = () => {
+//     let html = `<article class="areasCard">`
+
+//     for (const area of parkAreas) {
+
+//         html += `<section class="areaCards"data-type="area"  
+//                     data-id="${area.id}">
+//                     <h2> ${area.name} </h2>
+//                         <ul>${relatedServices}</ul>
+                    
+                    
+                    
+                    
+//                 </section>`
+//     }
+
+//     html += `</ul>`
+
+//     return html
 // }
+
+
+

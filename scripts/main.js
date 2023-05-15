@@ -7,26 +7,33 @@ import { areasList } from "./Areas.js"
 const mainContainer = document.querySelector("#container")
 
 const applicationHTML = `
-<h1>CIDER FALLS</h1>
-<article class="details">
-    <section class="detail--column list details__services">
-        <h2>Services</h2>
-        ${serviceList()}
-    </section>
-    <section class="detail--column list details__park areas">
-        <h2>Park Areas</h2>
-        ${areasList()}
-    </section>
-</article>
+<div class="logo">
+    <img src="/img/park-logo.png" alt="park logo">
+    <h1 class="title">CIDER FALLS</h1>
+</div>
+<div class="mainOverall">
+    <article class="detailsLeft">
+        <section class="servicesBox">
+            <h2>Services</h2>
+            ${serviceList()}
+        </section>
 
-<article class="guest names">
-    <h2>GUESTS</h2>
-    <section class="detail--column list details__names">
+        <article>
+        <h2>Park Areas</h2>
+        <section class="areasBoxMain">
+                <div class="areasList">
+                ${areasList()}
+                </div>
+            </section>
+        </article>
+    </article>
+    <article class="guestRight">
         <h2>Guests</h2>
-        ${guestList()}
-        
-    </section>
-</article>
+        <section class="guestList">
+            ${guestList()}
+        </section>
+    </article>
+</div>
 `
 
 mainContainer.innerHTML = applicationHTML

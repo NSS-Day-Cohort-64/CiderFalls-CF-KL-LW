@@ -53,18 +53,26 @@ document.addEventListener('click', (clickEvent) => {
 
 
 export const serviceList = () => {
-    let html = "<ul>"
+    let html = "<div>"
+
+    let count = 0
 
     for (const service of servicesList) {
 
-        html += `<li  data-type="service"  
+        const serviceHTML = `<span data-type="service"  
                     data-id="${service.id}" 
                     data-name="${service.name}" >
-                    ${service.name}
-                </li>`
+                    ${count === 0 ? service.name : `, ${service.name}`}
+                </span>`
+
+        html += serviceHTML
+        count++
+        // Excellent
+
     }
 
-    html += "</ul>"
+
+    html += ".</div>"
 
     return html
 }
